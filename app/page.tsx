@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Button,
   Container,
@@ -51,10 +51,14 @@ export default function Home() {
     setSnackbar({ open: true, message, severity });
   };
 
-  const loadBooks = async (page = 0, rowsPerPage = 5) => {
+  const loadBooks = useCallback(async (page = 0, rowsPerPage = 5) => {
     const data = await fetchBooks(page, rowsPerPage, notify);
     setBooks(data);
-  };
+  }, []);
+
+  useEffect(() => {
+    loadBooks(page, rowsPerPage);
+  }, [page, rowsPerPage, loadBooks]);
 
   const handleChangePage = (
     _: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
@@ -99,10 +103,6 @@ export default function Home() {
     setSelectedBookDetail(null);
   };
 
-  useEffect(() => {
-    loadBooks(page, rowsPerPage);
-  }, [page, rowsPerPage, loadBooks]);
-
   const filteredBooks =
     books?.filter((book) =>
       book.titulo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -111,55 +111,55 @@ export default function Home() {
   return (
     <Container>
       <Snackbar
-      open={snackbar.open}
-      autoHideDuration={3000}
-      onClose={() => setSnackbar({ ...snackbar, open: false })}
-      >
-      <Alert
+        open={snackbar.open}
+        autoHideDuration={3000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        severity={snackbar.severity}
-        sx={{ width: "100%" }}
       >
-        {snackbar.message}
-      </Alert>
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
       </Snackbar>
       <Box my={4}>
-      <Typography
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{ color: "white" }}
-      >
-        Zievo Library
-      </Typography>
-      <Typography
-        variant="h6"
-        align="center"
-        color="textSecondary"
-        component="p"
-        sx={{ color: "white" }}
-      >
-        Gerencie sua coleção de livros de forma fácil e rápida
-      </Typography>
+        <Typography
+          variant="h3"
+          align="center"
+          gutterBottom
+          sx={{ color: "white" }}
+        >
+          Zievo Library
+        </Typography>
+        <Typography
+          variant="h6"
+          align="center"
+          color="textSecondary"
+          component="p"
+          sx={{ color: "white" }}
+        >
+          Gerencie sua coleção de livros de forma fácil e rápida
+        </Typography>
       </Box>
 
       <Box
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      mb={3}
-      p={2}
-      sx={{ backgroundColor: "rgb(255, 255, 255)", borderRadius: 2 }}
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={3}
+        p={2}
+        sx={{ backgroundColor: "rgb(255, 255, 255)", borderRadius: 2 }}
       >
-      <TextField
-        label="Buscar por título"
-        variant="outlined"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        sx={{ backgroundColor: "white", borderRadius: 1 }}
-      />
-      <Button
-        variant="contained"
+        <TextField
+          label="Buscar por título"
+          variant="outlined"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          sx={{ backgroundColor: "white", borderRadius: 1 }}
+        />
+        <Button
+          variant="contained"
           color="primary"
           onClick={() => setOpenModal(true)}
           sx={{ ml: 2, py: 1.5, px: 3 }}
