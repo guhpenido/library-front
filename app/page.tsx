@@ -111,55 +111,55 @@ export default function Home() {
   return (
     <Container>
       <Snackbar
-        open={snackbar.open}
-        autoHideDuration={3000}
-        onClose={() => setSnackbar({ ...snackbar, open: false })}
+      open={snackbar.open}
+      autoHideDuration={3000}
+      onClose={() => setSnackbar({ ...snackbar, open: false })}
       >
-        <Alert
-          onClose={() => setSnackbar({ ...snackbar, open: false })}
-          severity={snackbar.severity}
-          sx={{ width: "100%" }}
-        >
-          {snackbar.message}
-        </Alert>
+      <Alert
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        severity={snackbar.severity}
+        sx={{ width: "100%" }}
+      >
+        {snackbar.message}
+      </Alert>
       </Snackbar>
       <Box my={4}>
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          sx={{ color: "white" }}
-        >
-          Zievo Library
-        </Typography>
-        <Typography
-          variant="h6"
-          align="center"
-          color="textSecondary"
-          component="p"
-          sx={{ color: "white" }}
-        >
-          Gerencie sua coleção de livros de forma fácil e rápida
-        </Typography>
+      <Typography
+        variant="h3"
+        align="center"
+        gutterBottom
+        sx={{ color: "white" }}
+      >
+        Zievo Library
+      </Typography>
+      <Typography
+        variant="h6"
+        align="center"
+        color="textSecondary"
+        component="p"
+        sx={{ color: "white" }}
+      >
+        Gerencie sua coleção de livros de forma fácil e rápida
+      </Typography>
       </Box>
 
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={3}
-        p={2}
-        sx={{ backgroundColor: "rgb(255, 255, 255)", borderRadius: 2 }}
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      mb={3}
+      p={2}
+      sx={{ backgroundColor: "rgb(255, 255, 255)", borderRadius: 2 }}
       >
-        <TextField
-          label="Buscar por título"
-          variant="outlined"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ backgroundColor: "white", borderRadius: 1 }}
-        />
-        <Button
-          variant="contained"
+      <TextField
+        label="Buscar por título"
+        variant="outlined"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ backgroundColor: "white", borderRadius: 1 }}
+      />
+      <Button
+        variant="contained"
           color="primary"
           onClick={() => setOpenModal(true)}
           sx={{ ml: 2, py: 1.5, px: 3 }}
@@ -253,6 +253,7 @@ export default function Home() {
           onClose={() => setOpenEditModal(false)}
           book={selectedBook}
           onEdit={() => loadBooks(page, rowsPerPage)}
+          notify={notify}
         />
       )}
     </Container>

@@ -43,7 +43,10 @@ export default function EditBookModal({
         formState: { errors },
     } = useForm<FormData>({
         resolver: zodResolver(schema),
-        defaultValues: { ...book },
+        defaultValues: { 
+            ...book, 
+            ano_publicacao: typeof book.ano_publicacao === "string" ? book.ano_publicacao : String(book.ano_publicacao),
+        },
     });
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
