@@ -12,7 +12,6 @@ interface EditBookModalProps {
   open: boolean;
   onClose: () => void;
   book: Book;
-  onEdit: () => void;
   notify: (message: string, severity: "success" | "error" | "info") => void;
 }
 
@@ -33,7 +32,6 @@ export default function EditBookModal({
   open,
   onClose,
   book,
-  onEdit,
   notify,
 }: EditBookModalProps) {
   const [image, setImage] = useState<File | null>(null);

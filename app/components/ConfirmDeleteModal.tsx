@@ -13,7 +13,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({ open, onClose, 
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Confirmar Exclusão</DialogTitle>
       <DialogContent>
-        <Typography>Tem certeza que deseja excluir o livro "{bookTitle}"?</Typography>
+        <Typography>Tem certeza que deseja excluir o livro {bookTitle}?</Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">

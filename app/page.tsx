@@ -101,7 +101,7 @@ export default function Home() {
 
   useEffect(() => {
     loadBooks(page, rowsPerPage);
-  }, [page, rowsPerPage]);
+  }, [page, rowsPerPage, loadBooks]);
 
   const filteredBooks =
     books?.filter((book) =>
@@ -252,7 +252,6 @@ export default function Home() {
           open={openEditModal}
           onClose={() => setOpenEditModal(false)}
           book={selectedBook}
-          onEdit={() => loadBooks(page, rowsPerPage)}
           notify={notify}
         />
       )}

@@ -3,6 +3,7 @@
 import React from "react";
 import { Modal, Box, Typography, Grid, Button, Paper } from "@mui/material";
 import { Book } from '../types/book';
+import Image from 'next/image';
 
 interface BookDetailsModalProps {
     open: boolean;
@@ -68,9 +69,9 @@ export default function BookDetailsModal({
                                 padding: 2,
                             }}
                         >
-                            <img
+                            <Image
                                 src={imagePath}
-                                alt={book?.titulo}
+                                alt={book?.titulo || "No title available"}
                                 style={{
                                     maxWidth: "100%",
                                     maxHeight: "400px",
