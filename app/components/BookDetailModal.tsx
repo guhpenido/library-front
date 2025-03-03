@@ -77,6 +77,8 @@ export default function BookDetailsModal({
                                     maxHeight: "400px",
                                     objectFit: "contain",
                                 }}
+                                width={300}
+                                height={400}
                             />
                         </Paper>
                     </Grid>
