@@ -48,13 +48,16 @@ export default function AddBookModal({
 
 const onSubmit = async (data: FormData) => {
     const formData = new FormData();
-
     Object.keys(data).forEach((key) => {
+      const value = data[key as keyof FormData];
+
+      if (value !== undefined) {
         if (key === "ano_publicacao") {
-            formData.append(key, String(parseInt(data[key as keyof FormData])));
+          formData.append(key, String(parseInt(value as string))); 
         } else {
-            formData.append(key, String(data[key as keyof FormData]));
+          formData.append(key, String(value));
         }
+      }
     });
 
     if (image) {
