@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Book } from "../types/book";
-import editBook from "../api/api";
+import {editBook} from "../api/api";
 
 interface EditBookModalProps {
   open: boolean;
@@ -50,6 +50,7 @@ export default function EditBookModal({
         typeof book.ano_publicacao === "string"
           ? book.ano_publicacao
           : String(book.ano_publicacao),
+      imagem: undefined,
     },
   });
 
@@ -67,7 +68,7 @@ export default function EditBookModal({
 
       if (value !== undefined) {
         if (key === "ano_publicacao") {
-          formData.append(key, String(parseInt(value as string))); 
+          formData.append(key, String(parseInt(value as string)));
         } else {
           formData.append(key, String(value));
         }
