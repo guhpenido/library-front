@@ -5,6 +5,7 @@ import { Modal, Box, TextField, Button, Typography, Grid } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Book } from "../types/book";
 import editBook from "../api/api";
 
 interface EditBookModalProps {
